@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+    <File Path="SpellingExclusions.dic" />
+  </Folder>
+  <Project Path="src/Elifoot.Cli/Elifoot.Cli.csproj" Id="5e70584b-43ba-4b97-a5be-350fb4971868" />
+  <Project Path="src/Elifoot.Core/Elifoot.Core.csproj" />
+</Solution>
