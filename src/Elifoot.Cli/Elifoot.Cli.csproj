@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
+    <Platforms>x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
