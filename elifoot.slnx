@@ -9,9 +9,7 @@
     <File Path="README.md" />
     <File Path="SpellingExclusions.dic" />
   </Folder>
-  <Project Path="Elifoot.Core/Elifoot.Core.csproj">
-    <Platform Project="x64" />
-  </Project>
+  <Project Path="Elifoot.Core/Elifoot.Core.csproj" />
   <Project Path="Elifoot/Elifoot.csproj">
     <Deploy />
   </Project>

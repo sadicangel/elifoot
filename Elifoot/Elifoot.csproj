@@ -22,11 +22,13 @@
       https://aka.platform.uno/singleproject-features
     -->
     <UnoFeatures>
+      Material;
       Lottie;
       Hosting;
       Toolkit;
       Logging;
       MVUX;
+      ExtensionsCore;
       Configuration;
       Localization;
       Navigation;
@@ -36,6 +38,14 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Elifoot.Core\Elifoot.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Presentation\ClubPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
 </Project>
