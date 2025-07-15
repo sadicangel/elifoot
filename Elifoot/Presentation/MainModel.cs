@@ -1,31 +1,19 @@
+using Elifoot.Core.Data;
 using Elifoot.Core.Entities;
 using Region = Elifoot.Core.Entities.Region;
 
 namespace Elifoot.Presentation;
 
-public partial record MainModel
+public partial class MainModel(IStringLocalizer localizer, IOptions<AppConfig> appInfo, INavigator navigator, AppDbContext dbContext)
 {
-    private INavigator _navigator;
-
-    public MainModel(
-        IStringLocalizer localizer,
-        IOptions<AppConfig> appInfo,
-        INavigator navigator)
-    {
-        _navigator = navigator;
-        Title = "Main";
-        Title += $" - {localizer["ApplicationName"]}";
-        Title += $" - {appInfo?.Value?.Environment}";
-    }
-
-    public string? Title { get; }
-
-    public IState<string> Name => State<string>.Value(this, () => string.Empty);
+    public string? Title { get; } = "Main" + $" - {localizer["ApplicationName"]}" + $" - {appInfo?.Value?.Environment}";
 
     public async Task GoToSecond()
     {
-        var name = await Name;
-        await _navigator.NavigateViewModelAsync<ClubModel>(this, data: Sporting);
+        dbContext.Set<Club>().Add(Sporting);
+        dbContext.SaveChanges();
+
+        await navigator.NavigateViewModelAsync<ClubModel>(this, data: Sporting);
     }
 
     private static readonly Club Sporting = CreateSporting();
@@ -39,84 +27,84 @@ public partial record MainModel
 
         var portugal = new Country
         {
-            Code = "PT",
+            Code = "PRT",
             Name = "Portugal",
             Region = europe,
         };
 
         var spain = new Country
         {
-            Code = "ES",
+            Code = "ESP",
             Name = "Spain",
             Region = europe,
         };
 
         var netherlands = new Country
         {
-            Code = "NL",
+            Code = "NLD",
             Name = "Netherlands",
             Region = europe,
         };
 
         var denmark = new Country
         {
-            Code = "DK",
+            Code = "DNK",
             Name = "Denmark",
             Region = europe,
         };
 
         var england = new Country
         {
-            Code = "EN",
+            Code = "ENG",
             Name = "England",
             Region = europe,
         };
 
         var sweden = new Country
         {
-            Code = "SE",
+            Code = "SWE",
             Name = "Sweden",
             Region = europe,
         };
 
         var greece = new Country
         {
-            Code = "GR",
+            Code = "GRC",
             Name = "Greece",
             Region = europe,
         };
 
         var coteDIvoire = new Country
         {
-            Code = "CI",
-            Name = "CÙte d'Ivoire",
+            Code = "CIV",
+            Name = "C√¥te d'Ivoire",
             Region = africa,
         };
 
         var mozambique = new Country
         {
-            Code = "MZ",
+            Code = "MOZ",
             Name = "Mozambique",
             Region = africa,
         };
 
         var brazil = new Country
         {
-            Code = "BR",
+            Code = "BRA",
             Name = "Brazil",
             Region = america,
         };
 
         var uruguay = new Country
         {
-            Code = "UY",
+            Code = "URY",
             Name = "Uruguay",
             Region = america,
         };
 
         var japan = new Country
         {
-            Code = "JP",
+            Code = "JPN",
             Name = "Japan",
             Region = asia,
         };
@@ -128,7 +116,7 @@ public partial record MainModel
             Name = "Sporting Clube de Portugal",
             PrimaryColor = System.Drawing.Color.Green,
             SecondaryColor = System.Drawing.Color.White,
-            Stadium = new Stadium { Name = "JosÈ Alvalade" },
+            Stadium = new Stadium { Name = "Jos√© Alvalade" },
             Country = portugal,
             Coach = coach,
         };
@@ -141,7 +129,7 @@ public partial record MainModel
                 Salary = 10728,
                 Player = new Player
                 {
-                    Name = "Antonio Ad·n",
+                    Name = "Antonio Ad√°n",
                     Country = spain,
                     Power = 84,
                     IsStar = false,
@@ -195,7 +183,7 @@ public partial record MainModel
                 Salary = 30752,
                 Player = new Player
                 {
-                    Name = "GonÁalo In·cio",
+                    Name = "Gon√ßalo In√°cio",
                     Country = portugal,
                     Power = 88,
                     IsStar = true,
@@ -411,7 +399,7 @@ public partial record MainModel
                 Salary = 53725,
                 Player = new Player
                 {
-                    Name = "Daniel BraganÁa",
+                    Name = "Daniel Bragan√ßa",
                     Country = portugal,
                     Power = 81,
                     IsStar = false,
@@ -465,7 +453,7 @@ public partial record MainModel
                 Salary = 50141,
                 Player = new Player
                 {
-                    Name = "Pedro GonÁalves",
+                    Name = "Pedro Gon√ßalves",
                     Country = portugal,
                     Power = 87,
                     IsStar = true,
@@ -492,12 +480,12 @@ public partial record MainModel
                 Salary = 29043,
                 Player = new Player
                 {
-                    Name = "Trinc„o",
+                    Name = "Trinc√£o",
                     Country = portugal,
                     Power = 84,
                     IsStar = true,
                     Conduct = PlayerConduct.Rough,
-                    Position = PlayerPosition.Forward,
+                    Position = PlayerPosition.Attacker,
                     Price = 26000000,
                     Stats = new PlayerStats
                     {
@@ -524,7 +512,7 @@ public partial record MainModel
                     Power = 82,
                     IsStar = false,
                     Conduct = PlayerConduct.Sanguinary,
-                    Position = PlayerPosition.Forward,
+                    Position = PlayerPosition.Attacker,
                     Price = 20500000,
                     Stats = new PlayerStats
                     {
@@ -551,7 +539,7 @@ public partial record MainModel
                     Power = 85,
                     IsStar = true,
                     Conduct = PlayerConduct.Sanguinary,
-                    Position = PlayerPosition.Forward,
+                    Position = PlayerPosition.Attacker,
                     Price = 26250000,
                     Stats = new PlayerStats
                     {
@@ -573,12 +561,12 @@ public partial record MainModel
                 Salary = 46369,
                 Player = new Player
                 {
-                    Name = "Viktor Gyˆkeres",
+                    Name = "Viktor Gy√∂keres",
                     Country = sweden,
                     Power = 92,
                     IsStar = true,
                     Conduct = PlayerConduct.Gentleman,
-                    Position = PlayerPosition.Forward,
+                    Position = PlayerPosition.Attacker,
                     Price = 28000000,
                     Stats = new PlayerStats
                     {
@@ -627,7 +615,7 @@ public partial record MainModel
                 Salary = 25833,
                 Player = new Player
                 {
-                    Name = "Iv·n Fresneda",
+                    Name = "Iv√°n Fresneda",
                     Country = spain,
                     Power = 77,
                     IsStar = false,
@@ -735,7 +723,7 @@ public partial record MainModel
                 Salary = 42342,
                 Player = new Player
                 {
-                    Name = "Jo„o Muniz",
+                    Name = "Jo√£o Muniz",
                     Country = portugal,
                     Power = 76,
                     IsStar = false,

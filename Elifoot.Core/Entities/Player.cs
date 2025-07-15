@@ -1,4 +1,4 @@
-﻿namespace Elifoot.Core.Entities;
+namespace Elifoot.Core.Entities;
 
 public sealed class Player
 {
@@ -17,7 +17,7 @@ public sealed class Player
 }
 
 public enum PlayerConduct { Sanguinary, Thug, Rough, Gentleman, Harmless, FairPlay, }
-public enum PlayerPosition { GoalKeeper, Defender, Midfielder, Forward }
+public enum PlayerPosition { GoalKeeper, Defender, Midfielder, Attacker }
 public sealed class PlayerStats
 {
     public required int Wins { get; set; }

@@ -1,13 +1,16 @@
+using Elifoot.Core.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace Elifoot.Presentation;
 
 public class ShellModel
 {
-    private readonly INavigator _navigator;
-
-    public ShellModel(
-        INavigator navigator)
+    public ShellModel(INavigator navigator, IDbContextFactory<AppDbContext> dbContextFactory)
     {
-        _navigator = navigator;
-        // Add code here to initialize or attach event handlers to singleton services
+        _ = navigator;
+        using var dbContext = dbContextFactory.CreateDbContext();
+        dbContext.Database.EnsureDeleted();
+        dbContext.Database.EnsureCreated();
+        dbContext.SaveChanges();
     }
 }

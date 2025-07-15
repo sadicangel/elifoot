@@ -9,7 +9,7 @@
   xmlns:uen="using:Uno.Extensions.Navigation.UI"
   xmlns:utu="using:Uno.Toolkit.UI"
   mc:Ignorable="d"
-  d:DataContext="{x:Bind local:ClubModel}"
+  d:DataContext="{d:DesignInstance local:ClubModel}"
   NavigationCacheMode="Required"
   Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -21,29 +21,29 @@
       </Grid.RowDefinitions>
       <utu:NavigationBar Content="{Binding Title}" />
 
-      <Grid Grid.Row="1" Padding="10" >
+      <Grid Grid.Row="1" Margin="10" >
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="5*" />
           <ColumnDefinition Width="4*" />
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0">
+        <StackPanel Grid.Column="0" >
           <ListView ItemsSource="{Binding Players}">
             <ListView.ItemTemplate>
-              <DataTemplate x:DataType="model:Player">
-                <Grid ColumnSpacing="10">
+              <DataTemplate x:DataType="local:PlayerModel">
+                <Grid ColumnSpacing="8" Padding="10">
                   <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="12" />
                     <ColumnDefinition Width="300" />
                     <ColumnDefinition Width="24" />
-                    <ColumnDefinition Width="24" />
+                    <ColumnDefinition Width="32" />
                     <ColumnDefinition Width="*" />
                   </Grid.ColumnDefinitions>
-                
-                  <TextBlock Grid.Column="0" Text="A" />
+
+                  <TextBlock Grid.Column="0" Text="{Binding Position}" />
                   <TextBlock Grid.Column="1" Text="{Binding Name}" />
                   <TextBlock Grid.Column="2" Text="{Binding Power}" />
-                  <TextBlock Grid.Column="3" Text="{Binding Country.Code}" />
-                  <TextBlock Grid.Column="4" Text="{Binding Contract.Salary}" />
+                  <TextBlock Grid.Column="3" Text="{Binding Country}" />
+                  <TextBlock Grid.Column="4" Text="{Binding Salary}" />
                 </Grid>
               </DataTemplate>
             </ListView.ItemTemplate>

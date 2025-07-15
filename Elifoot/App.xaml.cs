@@ -1,4 +1,6 @@
+using Elifoot.Core.Data;
 using Elifoot.Core.Entities;
+using Microsoft.EntityFrameworkCore;
 using Uno.Resizetizer;
 
 namespace Elifoot;
@@ -67,6 +69,7 @@ public partial class App : Application
                 {
                     // TODO: Register your services
                     //services.AddSingleton<IMyService, MyService>();
+                    services.AddDbContextFactory<AppDbContext>(opts => opts.UseSqlite("Data Source=elifoot.db"));
                 })
                 .UseNavigation(ReactiveViewModelMappings.ViewModelMappings, RegisterRoutes)
             );
