@@ -2,7 +2,7 @@ using Elifoot.Core.Entities;
 
 namespace Elifoot.Presentation;
 
-public partial class ClubModel(Club club, IStringLocalizer localizer, INavigator navigator)
+public partial class HomeModel(Club club, IStringLocalizer localizer, INavigator navigator)
 {
     public string Title => club.Name;
 
@@ -29,9 +29,17 @@ public partial class PlayerModel(Player player)
 
     public int Power => player.Power;
 
+    public PlayerConduct Conduct => player.Conduct;
+
     public bool IsStar => player.IsStar;
 
-    public string Country => player.Country.Code;
+    public string CountryCode => player.Country.Code;
+    public string CountryName => player.Country.Name;
 
     public int Salary => player.Contract.Salary;
+
+    public int Games => player.Stats.Wins + player.Stats.Draws + player.Stats.Losses;
+    public int Goals => player.Stats.Goals;
+    public int RedCards => player.Stats.RedCards;
+    public int Injuries => player.Stats.Injuries;
 }

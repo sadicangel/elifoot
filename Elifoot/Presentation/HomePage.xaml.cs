@@ -1,8 +1,8 @@
 namespace Elifoot.Presentation;
 
-public sealed partial class ClubPage : Page
+public sealed partial class HomePage : Page
 {
-    public ClubPage()
+    public HomePage()
     {
         this.InitializeComponent();
     }

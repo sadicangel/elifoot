@@ -88,7 +88,7 @@ public partial class App : Application
         views.Register(
             new ViewMap(ViewModel: typeof(ShellModel)),
             new ViewMap<MainPage, MainModel>(),
-            new DataViewMap<ClubPage, ClubModel, Club>()
+            new DataViewMap<HomePage, HomeModel, Club>()
         );
 
         routes.Register(
@@ -96,7 +96,7 @@ public partial class App : Application
                 Nested:
                 [
                     new ("Main", View: views.FindByViewModel<MainModel>(), IsDefault:true),
-                    new ("Club", View: views.FindByViewModel<ClubModel>()),
+                    new ("Club", View: views.FindByViewModel<HomeModel>()),
                 ]
             )
         );

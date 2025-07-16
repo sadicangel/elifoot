@@ -8,12 +8,17 @@ public partial class MainModel(IStringLocalizer localizer, IOptions<AppConfig> a
 {
     public string? Title { get; } = "Main" + $" - {localizer["ApplicationName"]}" + $" - {appInfo?.Value?.Environment}";
 
+    private static bool s_isInit;
     public async Task GoToSecond()
     {
-        dbContext.Set<Club>().Add(Sporting);
-        dbContext.SaveChanges();
+        if (!s_isInit)
+        {
+            s_isInit = true;
+            dbContext.Set<Club>().Add(Sporting);
+            dbContext.SaveChanges();
+        }
 
-        await navigator.NavigateViewModelAsync<ClubModel>(this, data: Sporting);
+        await navigator.NavigateViewModelAsync<HomeModel>(this, data: Sporting);
     }
 
     private static readonly Club Sporting = CreateSporting();
@@ -116,7 +121,7 @@ public partial class MainModel(IStringLocalizer localizer, IOptions<AppConfig> a
             Name = "Sporting Clube de Portugal",
             PrimaryColor = System.Drawing.Color.Green,
             SecondaryColor = System.Drawing.Color.White,
-            Stadium = new Stadium { Name = "José Alvalade" },
+            Stadium = new Stadium { Name = "José Alvalade", SeatCount = 52000, SeatPrice = 20 },
             Country = portugal,
             Coach = coach,
         };
